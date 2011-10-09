@@ -1,8 +1,6 @@
 
-nbproject/project.xml
+nbproject/*
 
-nbproject/project.properties
+*.DS_Store
 
-nbproject/private/private.properties
-
-.DS_Store
+node_modules/*

@@ -55,7 +55,7 @@
             //Google maps defaults
             var myOptions = {
                 zoom: 6,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeId: google.maps.MapTypeId.TERRAIN,
                 disableDefaultUI: true,
                 disableDoubleClickZoom: true,
                 center : new google.maps.LatLng( 54,-3 )
@@ -75,12 +75,15 @@
         function get_overlay_urls( callback )
         {
             var 
-                time = new Date(),
-                hour = time.getUTCHours() - 1, 
+                time = new Date();
+                time.setUTCHours(time.getUTCHours()-6);
+            var    
+                hour = time.getUTCHours(), 
                 minute = 0, 
-                year = time.getFullYear(), 
-                day = time.getDay(), 
-                month = time.getMonth(),
+                year = time.getUTCFullYear(), 
+                day = time.getUTCDate(), 
+                month = time.getUTCMonth() + 1,
+                
                 m,
                 /**
                  * Closure with access to time variables, returns URL to each radar image for the time
@@ -91,6 +94,10 @@
                     if( minute === 0 ){
                         m = '0' + minute.toString();
                     }
+                    
+                    
+                    
+                    
                     
                     return 'http://www.raintoday.co.uk/radarimage2/' + year + '-' + month + '-' + day + '%20' + hour + ':' + m + ':00/48.73445537176822/59.4115481664237/-12.06298828125/4.19677734375/740/834/g3fvn1s3mrrrgi9vszkwofksqik11igl/rainfall/obs/radar.radar';
                 },
@@ -111,6 +118,8 @@
             // Loop thru a number of times to create URLs for
             while( i -- ){
                 
+                
+                
                 // Start minutes again for the next hour
                 if( minute < ( 60 - base.config.image_interval ) ){
                     minute = minute + base.config.image_interval;
@@ -123,6 +132,12 @@
                         day ++;
                     }
                 }
+                
+                if( hour < 0 ){
+                    hour = hour + 24;
+                }
+                
+                console.log( 'h: ' + hour + ' min: ' + minute + ' date: ' + day + ' month: ' + month);
                 // Make an overlay object for each time interval
                 var img = document.createElement('img');
                     
@@ -181,6 +196,16 @@
                         return false;
                     }
                     
+                
+                (function clearOverlays() {
+                  if (base.radar_images) {
+                    var len = base.radar_images.length;
+                    while( len -- ) {
+                      base.radar_images[len].overlay.setMap(null);
+                    }
+                  }
+                })();
+                
                 var overlay = base.radar_images[key].overlay || false,
                     time = base.radar_images[key].time || false;
                     
@@ -195,20 +220,14 @@
                 $( '#time' ).html( time.h + ':' + time.m );
                 
                 
-                try{
-                    if( 'object' === typeof( base.radar_images[key-1] ) ){
-                        base.radar_images[key-1].overlay.setMap( null );
-                    }else{
-                        base.radar_images[key+1].overlay.setMap( null );
-                    }
-                }catch(e){
-                }
+                
+                
                 
                 
                 
             }
             
-            window.setInterval( add_overlay, 1000 );
+            window.setInterval( add_overlay, 800 );
             
         }
         
