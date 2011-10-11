@@ -154,6 +154,8 @@
 
                 img.onload = function(){
                     preloaded ++;
+		    
+                    $('#progress').append( $('<li>') );    
                     
                     // If theyre all loaded, run the callback
                     if( preloaded >= 20 ){
@@ -253,9 +255,7 @@
                 
                 
                 
-                while( base.config.total -- ){
-                    $('#progress').append( $('<li>') );    
-                }
+                
             }
         };    
     })();
