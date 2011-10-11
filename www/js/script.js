@@ -138,26 +138,27 @@
                 }
                 
                 console.log( 'h: ' + hour + ' min: ' + minute + ' date: ' + day + ' month: ' + month);
-                // Make an overlay object for each time interval
-                var img = document.createElement('img');
-                    
-                img.src = url();  
                 
+		// Create an image element, to preload the image
+		var img = document.createElement('img');
+                img.src = url();
+                
+                // Make an overlay object for each time interval
                 var overlay = new google.maps.GroundOverlay(
                         img.src,
                         imageBounds
                 )
                                     
-                    // Store overlay in global object to loop thru
+		// Store overlay in global object to loop thru
                 base.radar_images.push( {key : i, overlay : overlay, time : {h : hour, m : m}} );
 
-
+		// run this when each image loads
                 img.onload = function(){
                     preloaded ++;
 		    
                     $('#progress').append( $('<li>') );    
                     
-                    // If theyre all loaded, run the callback
+                    // If they're all loaded, run the callback
                     if( preloaded >= 20 ){
                         if( 'function' === typeof(callback) ){
                             callback();
@@ -217,28 +218,14 @@
                 }catch(e){
                 }
                 
-                
-                
                 $( '#time' ).html( time.h + ':' + time.m );
-                
-                
-                
-                
-                
-                
-                
             }
             
             window.setInterval( add_overlay, 800 );
             
         }
         
-        
-        
-        
-        
-        
-
+	// Expose this object to global scope
         return {
             init : function(){
                 init_map();
@@ -252,15 +239,10 @@
 
                     do_overlays();
                 });
-                
-                
-                
-                
             }
+	    
         };    
     })();
-    
-//    document.Module = Module;
     
     $( document ).ready( Module.init );
     
