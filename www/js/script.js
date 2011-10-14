@@ -147,7 +147,7 @@
                 var overlay = new google.maps.GroundOverlay(
                         img.src,
                         imageBounds
-                )
+                );
                                     
 		// Store overlay in global object to loop thru
                 base.radar_images.push( {key : i, overlay : overlay, time : {h : hour, m : m}} );
@@ -169,6 +169,18 @@
                 
                 
             }
+//	    
+//	    var imageBounds = new google.maps.LatLngBounds(
+//                        new google.maps.LatLng(41,-12.06298828125),
+//                        new google.maps.LatLng(59.4115481664237,17.60000000)
+//                );
+//	    
+////	    var animated_overlay = new google.maps.GroundOverlay(
+////		'http://www2.meteox.com/radareu.php', imageBounds );
+//	    var animated_overlay = new google.maps.GroundOverlay(
+//		'http://world.meteox.com/radareu/loop_ir.gif?id=201110141826', imageBounds );
+//		
+//	    animated_overlay.setMap( base.map );
             
             
             
