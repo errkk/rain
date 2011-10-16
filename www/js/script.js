@@ -158,7 +158,14 @@
 		    
                     $('#progress').append( $('<li>') );    
                     
+<<<<<<< HEAD
                     // If they're all loaded, run the callback
+=======
+                    $( '#time' ).html( (preloaded / 20 * 100) + '%'  );
+                
+                    
+                    // If theyre all loaded, run the callback
+>>>>>>> added loading message
                     if( preloaded >= 20 ){
                         if( 'function' === typeof(callback) ){
                             callback();
@@ -247,7 +254,7 @@
                     if( min === 0 ){
                             min = '0' + min.toString();
                         }
-                    $( '#time' ).html( 'Starting: ' + base.start_time.h + ':' + min );
+//                    $( '#time' ).html( 'Starting: ' + base.start_time.h + ':' + min );
 
                     do_overlays();
                 });
