@@ -137,11 +137,13 @@
                     hour = hour + 24;
                 }
                 
-                console.log( 'h: ' + hour + ' min: ' + minute + ' date: ' + day + ' month: ' + month);
+//                console.log( 'h: ' + hour + ' min: ' + minute + ' date: ' + day + ' month: ' + month);
                 
 		// Create an image element, to preload the image
-		var img = document.createElement('img');
+//		var img = document.createElement('img');
+                img = new Image();
                 img.src = url();
+                
                 
                 // Make an overlay object for each time interval
                 var overlay = new google.maps.GroundOverlay(
@@ -158,14 +160,11 @@
 		    
                     $('#progress').append( $('<li>') );    
                     
-<<<<<<< HEAD
                     // If they're all loaded, run the callback
-=======
                     $( '#time' ).html( (preloaded / 20 * 100) + '%'  );
                 
                     
                     // If theyre all loaded, run the callback
->>>>>>> added loading message
                     if( preloaded >= 20 ){
                         if( 'function' === typeof(callback) ){
                             callback();
@@ -176,14 +175,12 @@
                 
                 
             }
-//	    
 //	    var imageBounds = new google.maps.LatLngBounds(
 //                        new google.maps.LatLng(41,-12.06298828125),
 //                        new google.maps.LatLng(59.4115481664237,17.60000000)
 //                );
-//	    
-////	    var animated_overlay = new google.maps.GroundOverlay(
-////		'http://www2.meteox.com/radareu.php', imageBounds );
+//	    var animated_overlay = new google.maps.GroundOverlay(
+//		'http://www2.meteox.com/radareu.php', imageBounds );
 //	    var animated_overlay = new google.maps.GroundOverlay(
 //		'http://world.meteox.com/radareu/loop_ir.gif?id=201110141826', imageBounds );
 //		
@@ -263,6 +260,7 @@
         };    
     })();
     
+    document.Rain = Module;
     $( document ).ready( Module.init );
     
     

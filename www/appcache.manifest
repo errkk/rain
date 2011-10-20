@@ -1,0 +1,23 @@
+CACHE MANIFEST
+# rev 1
+
+
+CACHE:
+/
+/js/script.js
+/css/style.css
+/img/h/apple-touch-icon.png
+/img/m/apple-touch-icon.png
+/img/l/apple-touch-icon-precomposed.png
+/img/l/apple-touch-icon.png
+
+/js/libs/respond.min.js
+/js/libs/jquery-1.6.2.min.js
+/js/mylibs/helper.js
+
+
+http://maps.google.com/maps/api/js?sensor=true
+
+
+NETWORK:
+*
