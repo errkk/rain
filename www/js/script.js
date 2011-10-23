@@ -251,7 +251,6 @@
                     if( min === 0 ){
                             min = '0' + min.toString();
                         }
-//                    $( '#time' ).html( 'Starting: ' + base.start_time.h + ':' + min );
 
                     do_overlays();
                 });
@@ -260,7 +259,6 @@
         };    
     })();
     
-    document.Rain = Module;
     $( document ).ready( Module.init );
     
     
